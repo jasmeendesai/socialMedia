@@ -1,0 +1,19 @@
+// to import the function that written to change theme
+@import "../../style.scss";
+
+.home{
+      // import the function here and wrap everything in that
+  @include themify($themes) {
+    background-color: themed("bgSoft");
+    padding: 20px 70px;
+    min-height: 100vh;
+
+    @include mobile{
+      padding: 10px;
+    }
+
+    @include tablet{
+      padding: 20px;
+    }
+  }
+}
