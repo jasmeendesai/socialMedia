@@ -22,6 +22,10 @@ function Register() {
 
   const handleClick = async(e)=>{
     e.preventDefault();
+    if (!inputs.username || !inputs.email || !inputs.password || !inputs.name) {
+      setErr("Please fill in all the details");
+      return;
+    }
     try {
       await axios.post("http://localhost:5000/api/auth/register", inputs)
       navigate("/login")
@@ -29,7 +33,7 @@ function Register() {
       setErr(err.response.data)
     }
   }
-
+  console.log(err)
   return (
     <div className='register'>
       <div className="card">
@@ -48,9 +52,9 @@ function Register() {
           <h1>Register</h1>
           <form>
             <input type="text" placeholder='Username' name='username' onChange={handleChange} />
-            <input type="email" placeholder='Email' name='email' onChange={handleChange}/>
-            <input type="password" placeholder='Password' name='password' onChange={handleChange}/>
-            <input type="text" placeholder='Name' name='name' onChange={handleChange}/>
+            <input type="email" placeholder='Email' name='email' onChange={handleChange} />
+            <input type="password" placeholder='Password' name='password' onChange={handleChange} />
+            <input type="text" placeholder='Name' name='name' onChange={handleChange} />
             {err && err}
             <button onClick={handleClick}>Register</button>
           </form>

@@ -65,6 +65,14 @@ const { mutate } = useCustomMutation(queryClient, mutationOptions);
 
   };
 
+  const handleDelete = async (storyId) =>{
+    try {
+      await mutate(makeRequest.delete.bind(null, `/stories?storyId=${storyId}&userId=${currentUser._id}`));
+    } catch (error) {
+      console.error('Error deleting story:', error);
+    }
+  }
+
   return (
     <div className="stories">
         <div className="story">
@@ -110,6 +118,9 @@ const { mutate } = useCustomMutation(queryClient, mutationOptions);
       { error ? "Something went wrong!" : isLoading ? "Loading" : data.map((story) => (
         <div className="story" key={story._id}>
             <img src={`/upload/${story.img}`} alt="Story" />
+            <div className="delete" onClick={() =>handleDelete(story._id)}>
+              <span>X</span>
+            </div>
             <span>{story.userId.name}</span>
         </div>
       ))}
