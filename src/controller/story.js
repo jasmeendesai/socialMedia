@@ -34,7 +34,18 @@ const addStories = async (req, res) => {
     }
 }
 const deleteStories = async (req, res) => {
+    try {
+        const {storyId, userId} = req.query
+        const loggedInUser = req.decodedToken
 
+        if(userId !== loggedInUser) return res.status(403).json("Not authorised to delete story")
+
+        await Story.findByIdAndDelete(storyId)
+        return res.status(200).json("Story deleted!")
+
+    } catch (error) {
+        return res.status(500).json(error) 
+    }
 }
 
 module.exports = {getStories, addStories, deleteStories}
