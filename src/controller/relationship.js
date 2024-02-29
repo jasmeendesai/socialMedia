@@ -4,9 +4,15 @@ const Relation = require('../model/Relationships')
 const getRelation = async (req, res) =>{
     try {
         const {followedUserId} = req.query
+
+        if(!followedUserId) {
+            const allData = await Relation.find().distinct("followerUserId");
+            return res.status(200).json(allData)
+        }
         const data = await Relation.find({followedUserId : followedUserId})
 
         const followed = data.map((id)=> id.followerUserId)
+
 
         return res.status(200).json(followed)
     } catch (error) {
@@ -20,7 +26,7 @@ const addRelation = async (req, res) =>{
 
         const {followerUserId, followedUserId} = req.query
         
-            const savedRelation = await Relation.create({
+            await Relation.create({
                 followerUserId : followerUserId,
                 followedUserId : followedUserId
             })
@@ -38,7 +44,7 @@ const deleteRelation = async (req, res) =>{
     try {
         const {followerUserId, followedUserId} = req.query
 
-        await Relation.findOneAndDelete({followedUserId : followedUserId, followerUserId : followerUserId})
+        const result = await Relation.findOneAndDelete({followedUserId : followedUserId, followerUserId : followerUserId})
 
         return res.status(200).json("Unfollowed!")
     } catch (error) {
@@ -48,3 +54,4 @@ const deleteRelation = async (req, res) =>{
 }
 
 module.exports = {getRelation, addRelation, deleteRelation}
+

@@ -18,12 +18,9 @@ const getUser = async (req, res) => {
 const getAllUser = async (req, res) => {
 
     try {
-        const user = await User.find()
+        const user = await User.find().select({password : 0})
 
-        const {password, ...info} = user._doc
-        console.log(user)
-
-        return res.status(200).json(info)
+        return res.status(200).json(user)
     } catch (error) {
         return res.status(500).send(error)
     }
