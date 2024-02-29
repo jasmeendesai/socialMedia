@@ -40,7 +40,7 @@ function App() {
 
   const ProtectedRoute = ({children}) =>{
 
-    if(!currentUser._id || !currentUser.username || !currentUser.name || !currentUser.email) {
+    if(!currentUser._id || !currentUser.username || !currentUser.name || !currentUser.email || !currentUser) {
       return <Navigate to="/login"/>
     } else {
       return children

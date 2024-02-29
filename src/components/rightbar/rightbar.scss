@@ -89,13 +89,14 @@
                         cursor:pointer;
                         border-radius: 5px;
 
-                        &:last-child{
-                            background-color: #f0544f;
-                        }
+                        
+                    }
+                    #Unfollow{
+                        background-color: #f0544f;
+                    }
 
-                        &:first-child{
-                            background-color: #5271ff;
-                        }
+                    #follow{
+                        background-color: #5271ff;
                     }
                 }
             }

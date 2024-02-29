@@ -26,6 +26,8 @@ function Stories() {
       }
     });
 
+    console.log(data)
+
     const mutationOptions = {
       onSuccess: () => {
         console.log('Mutation succeeded');
