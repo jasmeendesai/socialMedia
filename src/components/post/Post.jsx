@@ -53,6 +53,26 @@ function Post({ post }) {
         }
       }
     });
+
+    // ---------------------------------------------------------
+
+    const {isLoading: cIsLoading, error: cError, data : commentData } = useQuery({
+      queryKey: ["comments", post._id],
+      queryFn: async () => {
+        try {
+          const response = await makeRequest.get(`/comments?postId=${post._id}`);
+          return response.data;
+        } catch (error) {
+          throw new Error("Failed to fetch comments");
+        }
+      }
+    });
+
+
+
+    // ---------------------------------------------------------
+
+
     // console.log(data.includes(currentUser._id))
     const mutationOptions = {
       onSuccess: () => {
@@ -125,16 +145,18 @@ const handleDelete = async (e) =>{
                  : <FavoriteBorderOutlinedIcon onClick={handleLike}/>}
                 {data && data.length>0 ? data.length : "0"} Likes
             </div>
-            <div className="item" onClick={()=> setCommentOpen(!commentOpen)}>
-                <TextsmsOutlinedIcon/>
-                12 Comments
+            {/* <div className="item" onClick={()=> setCommentOpen(!commentOpen)}> */}
+            <div className="item">
+                <TextsmsOutlinedIcon onClick={()=> setCommentOpen(!commentOpen)}/>
+                {commentData && commentData.length > 0 ? commentData.length : "0" } Comments
             </div>
             <div className="item">
                 <ShareOutlinedIcon/>
                 Share
             </div>
         </div>
-        {commentOpen && <Comments postId={post._id}/>}
+        {/* {commentOpen && <Comments postId={post._id}/>} */}
+        {commentOpen && <Comments postId={post._id} data={commentData} isLoading={cIsLoading} error={cError}/>}
       </div>
     </div>
   );

@@ -24,23 +24,24 @@ import User from "../../assets/user.png"
 //   return { mutate };
 // }
 
-function Comments({postId}) {
+// function Comments({postId}) {
+function Comments({postId, data, isLoading, error}) {
     const queryClient = useQueryClient();
 
     const {currentUser} = useContext(AuthContext) 
     const [desc, setDesc] = useState("")
 
-    const { isLoading, error, data } = useQuery({
-      queryKey: ["comments"],
-      queryFn: async () => {
-        try {
-          const response = await makeRequest.get(`/comments?postId=${postId}`);
-          return response.data;
-        } catch (error) {
-          throw new Error("Failed to fetch comments");
-        }
-      }
-    });
+    // const { isLoading, error, data } = useQuery({
+    //   queryKey: ["comments"],
+    //   queryFn: async () => {
+    //     try {
+    //       const response = await makeRequest.get(`/comments?postId=${postId}`);
+    //       return response.data;
+    //     } catch (error) {
+    //       throw new Error("Failed to fetch comments");
+    //     }
+    //   }
+    // });
 
     const mutationOptions = {
       onSuccess: () => {

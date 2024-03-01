@@ -26,7 +26,8 @@ function Stories() {
       }
     });
 
-    console.log(data)
+    // console.log(data[0].userId._id)
+    // console.log(currentUser._id)
 
     const mutationOptions = {
       onSuccess: () => {
@@ -60,16 +61,15 @@ const { mutate } = useCustomMutation(queryClient, mutationOptions);
     e.preventDefault();
     let coverUrl = cover ? await upload(cover) : data.img;
 
-    mutate(makeRequest.post.bind(null, `/stories`), { img : coverUrl, userId : currentUser._id});
-
+    await mutate(makeRequest.post.bind(null, `/stories`), { img : coverUrl, userId : currentUser._id});
     setCover(null)
     setMenuOpen(false)
 
   };
 
-  const handleDelete = async (storyId) =>{
+  const handleDelete = async (storyId, userId) =>{
     try {
-      await mutate(makeRequest.delete.bind(null, `/stories?storyId=${storyId}&userId=${currentUser._id}`));
+      await mutate(makeRequest.delete.bind(null, `/stories?storyId=${storyId}&userId=${userId}`));
     } catch (error) {
       console.error('Error deleting story:', error);
     }
@@ -120,7 +120,7 @@ const { mutate } = useCustomMutation(queryClient, mutationOptions);
       { error ? "Something went wrong!" : isLoading ? "Loading" : data.map((story) => (
         <div className="story" key={story._id}>
             <img src={`/upload/${story.img}`} alt="Story" />
-            <div className="delete" onClick={() =>handleDelete(story._id)}>
+            <div className="delete" onClick={() =>handleDelete(story._id, story.userId._id)}>
               <span>X</span>
             </div>
             <span>{story.userId.name}</span>
