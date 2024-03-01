@@ -25,7 +25,9 @@ const addRelation = async (req, res) =>{
     try {
 
         const {followerUserId, followedUserId} = req.query
-        
+
+        const createdRelation = await Relation.find({followerUserId : followerUserId, followedUserId : followedUserId})
+        if(createdRelation.length>0) return res.status(200).json("Already Followed!")
             await Relation.create({
                 followerUserId : followerUserId,
                 followedUserId : followedUserId
