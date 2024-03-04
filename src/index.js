@@ -10,6 +10,8 @@ const postRoute = require('./route/posts')
 const storyRoute = require('./route/stories')
 const likeRoute = require('./route/likes')
 const commentRoute = require('./route/comments')
+const conversationRoute = require('./route/conversations')
+const messageRoute = require('./route/messages')
 const relationRoute = require('./route/relationship')
 
 
@@ -60,6 +62,8 @@ app.use('/api/posts', postRoute)
 app.use('/api/stories', storyRoute)
 app.use('/api/likes', likeRoute)
 app.use('/api/comments', commentRoute)
+app.use('/api/conversations', conversationRoute)
+app.use('/api/messages', messageRoute)
 app.use('/api/relationships', relationRoute)
 
 app.listen(PORT, ()=>{

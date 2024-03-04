@@ -29,9 +29,34 @@ const UserSchema = new mongoose.Schema({
         type : String,
         default : "City",
     },
-    website : {
+    // website : {
+    //     // type : String,
+    //     // default : "Website",
+
+    // },
+    facebook : {
         type : String,
-        default : "Website",
+        default : "https://facebook.com"
+    },
+    Instagram : {
+        type : String,
+        default : "https://www.instagram.com"
+    },
+    Twitter : {
+        type : String,
+        default : "https://twitter.com"
+    },
+    LinkedIn : {
+        type : String,
+        default : "https://in.linkedin.com"
+    },
+    Printrest : {
+        type : String,
+        default : "https://in.pinterest.com"
+    },
+    language : {
+        type : String,
+        default : "English",
     }
 },{timestamps : true})
 

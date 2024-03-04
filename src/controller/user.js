@@ -30,15 +30,20 @@ const getAllUser = async (req, res) => {
 const updateUser = async (req, res) => {
     try {
 
-        const {email, password, name, city, website, coverPic, profilePic, userId} = req.body;
+        const {email, password, name, city, coverPic, profilePic, userId, facebook, Instagram, Twitter, LinkedIn, Printrest, language} = req.body;
         const update = {}
         if(email) update.email = email;
         if(password) update.password = password;
         if(name) update.name = name;
         if(city) update.city = city;
-        if(website) update.website = website;
+        if(facebook) update.facebook = facebook;
+        if(Instagram) update.Instagram = Instagram;
+        if(Twitter) update.Twitter = Twitter;
+        if(LinkedIn) update.LinkedIn = LinkedIn;
+        if(Printrest) update.Printrest = Printrest;
         if(coverPic) update.coverPic = coverPic;
         if(profilePic) update.profilePic = profilePic;
+        if(language) update.language = language;
 
         await User.findByIdAndUpdate(userId, update, {new:true})
         // console.log(userInfo)
