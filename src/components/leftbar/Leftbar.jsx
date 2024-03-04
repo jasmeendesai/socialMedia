@@ -15,15 +15,36 @@ import Tutorials from '../../assets/tutorial.png'
 import Courses from '../../assets/book.png'
 import { useContext } from "react"
 import { AuthContext } from "../../context/authContext"
+import { useLocation } from "react-router-dom"
+import Coversation from "../conversation/Coversation"
+import { useQuery } from "@tanstack/react-query"
+import { makeRequest } from "../../axios"
 
 
 function Leftbar() {
 
   const {currentUser} = useContext(AuthContext)
+  const location = useLocation();
 
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["conversations", currentUser._id],
+    queryFn: async () => {
+      try {
+        const response = await makeRequest.get(`conversations/${currentUser._id}`);
+        return response.data;
+        
+      } catch (error) {
+        throw new Error("Failed to fetch likes");
+      }
+    },
+  });
+
+  
   return (
     <div className="leftbar">
       <div className="container">
+        {location.pathname !== "/messenger" &&
+        <>
         <div className="menu">
           <div className="user">
             <img src={currentUser.profilePic ? `/upload/${currentUser.profilePic}` : User} alt="person" />
@@ -90,6 +111,19 @@ function Leftbar() {
             <span>Courses</span>
           </div>
         </div>
+        </> 
+        }
+        {location.pathname === "/messenger" && 
+        <div className="menu">
+          {/* <div className="item"> */}
+            <input type="text" placeholder="Search for friends" className="chatMenuInput" />
+            {error ? "Something went wrong!" : isLoading ? "Loading..." : data.map(c =>
+            <Coversation conversation={c.members} currentUser={currentUser} key={c._id}/>
+            )}
+
+          {/* </div> */}
+        </div>
+        }
       </div>
     </div>
   )

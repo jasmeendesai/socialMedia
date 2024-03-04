@@ -15,7 +15,12 @@ function Update({setOpenUpdate, user}) {
         password : user.password,
         name : user.name,
         city : user.city,
-        website : user.website
+        facebook : user.facebook,
+        Instagram : user.Instagram,
+        Twitter : user.Twitter,
+        LinkedIn : user.LinkedIn,
+        Printrest : user.Printrest,
+        language : user.language
       })
 
 
@@ -57,7 +62,7 @@ function Update({setOpenUpdate, user}) {
         let profileUrl = profile ? await upload(profile) : user.profilePic;
 
 
-        mutate(makeRequest.put.bind(null, `/users`), { ...inputs, coverPic : coverUrl, profilePic : profileUrl, userId:user._id});
+        await mutate(makeRequest.put.bind(null, `/users`), { ...inputs, coverPic : coverUrl, profilePic : profileUrl, userId:user._id});
         setOpenUpdate(false)
         setCover(null)
         setProfile(null)
@@ -83,6 +88,7 @@ function Update({setOpenUpdate, user}) {
                 <CloudUploadIcon className="icon" />
               </div>
             </label>
+            
             <input
               type="file"
               id="cover"
@@ -138,11 +144,46 @@ function Update({setOpenUpdate, user}) {
             value={inputs.city}
             onChange={handleChange}
           />
-          <label>Website</label>
+          <label>Facebook</label>
           <input
             type="text"
-            name="website"
-            value={inputs.website}
+            name="facebook"
+            value={inputs.facebook}
+            onChange={handleChange}
+          />
+          <label>Instagram</label>
+          <input
+            type="text"
+            name="Instagram"
+            value={inputs.Instagram}
+            onChange={handleChange}
+          />
+          <label>Twitter</label>
+          <input
+            type="text"
+            name="Twitter"
+            value={inputs.Twitter}
+            onChange={handleChange}
+          />
+          <label>LinkedIn</label>
+          <input
+            type="text"
+            name="LinkedIn"
+            value={inputs.LinkedIn}
+            onChange={handleChange}
+          />
+          <label>Printrest</label>
+          <input
+            type="text"
+            name="Printrest"
+            value={inputs.Printrest}
+            onChange={handleChange}
+          />
+          <label>Language</label>
+          <input
+            type="text"
+            name="language"
+            value={inputs.language}
             onChange={handleChange}
           />
           <button onClick={handleClick}>Update</button>

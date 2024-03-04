@@ -13,6 +13,8 @@ $themes:(
         bgSoft : #f6f3f3,
         textColorSoft : #555,
         border : lightgray,
+        messageColor: #0a9499,
+        
     ),
 
     dark:(
@@ -22,6 +24,8 @@ $themes:(
         bgSoft : #333,
         textColorSoft : lightgray,
         border : #444,
+        messageColor: #bf81d2
+
     ),
 
 );

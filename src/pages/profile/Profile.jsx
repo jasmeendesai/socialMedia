@@ -92,19 +92,24 @@ if (relationData && relationData.includes(currentUser._id)) {
       <div className="profileContainer">
           <div className="uInfo">
             <div className="left">
-              <a href="http://facebook.com">
+              {/* <a href="http://facebook.com"> */}
+              <a href={data.facebook}>
                 <FacebookTwoToneIcon fontSize='medium' />
               </a>
-              <a href="http://facebook.com">
+              {/* <a href="http://facebook.com"> */}
+              <a href={data.Instagram}>
                 <InstagramIcon fontSize='medium' />
               </a>
-              <a href="http://facebook.com">
+              {/* <a href="http://facebook.com"> */}
+              <a href={data.Twitter}>
                 <TwitterIcon fontSize='medium' />
               </a>
-              <a href="http://facebook.com">
+              {/* <a href="http://facebook.com"> */}
+              <a href={data.LinkedIn}>
                 <LinkedInIcon fontSize='medium' />
               </a>
-              <a href="http://facebook.com">
+              {/* <a href="http://facebook.com"> */}
+              <a href={data.Printrest}>
                 <PinterestIcon fontSize='medium' />
               </a>
             </div>
@@ -117,7 +122,7 @@ if (relationData && relationData.includes(currentUser._id)) {
                 </div>
                 <div className="item">
                   <LanguageIcon fontSize='small'/>
-                  <span>{data.website}</span>
+                  <span>{data.language}</span>
                 </div>
               </div>
               {rIsLoading ? "Loading..." : userId === currentUser._id ? 

@@ -1,0 +1,40 @@
+// to import the function that written to change theme
+@import "../../style.scss";
+
+.chatOnline{
+      // import the function here and wrap everything in that
+  @include themify($themes) {
+    .chatOnlineFriend{
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 15px;
+
+        .chatOnlineImgContainer{
+            position: relative;
+            margin-right: 10px;
+
+            .chatOnlineImg{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 1px solid themed("border");
+            }
+
+            .chatOnlineBadge{
+                position: absolute;
+                top: 1px;
+                right: 1px;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: limegreen;
+            }
+        }
+
+        .chatOnlineName{}
+    }
+  }
+}

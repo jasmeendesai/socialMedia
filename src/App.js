@@ -3,7 +3,7 @@ import './style.scss'
 import Register from "./pages/register/Register";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
-import { Routes, Route, BrowserRouter, Outlet, Navigate } from 'react-router-dom';
+import { Routes, Route, BrowserRouter, Outlet, Navigate} from 'react-router-dom';
 import Navbar from './components/navbar/Navbar'
 import Leftbar from './components/leftbar/Leftbar'
 import Rightbar from './components/rightbar/Rightbar'
@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import Messenger from "./pages/messenger/Messenger";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
   const {darkMode} =useContext(DarkModeContext)
 
   const queryClient = new QueryClient()
+
 
   const Layout = () => {
     return (
@@ -58,6 +60,7 @@ function App() {
             </ProtectedRoute> }>
             <Route path="/" element={<Home/>} />
             <Route path="/profile/:id" element={<Profile/>} />
+            <Route path="/messenger" element={<Messenger/>} />
           </Route>
 
           {/* <Route element={<Layout />}>

@@ -59,6 +59,7 @@
             .item{
                 display: flex;
                 align-items: center;
+                // flex-direction: column;
                 gap: 10px;
 
                 img{
@@ -70,7 +71,17 @@
                     font-size: 14px;
                 }
 
+                
             }
+
+            .chatMenuInput{
+                    width: 90%;
+                    padding: 10px 0;
+                    border: none;
+                    border-bottom: 1px solid themed("border");
+                    background-color: transparent;
+                    color: themed("textColor");
+                }
 
         }
     }

@@ -1,0 +1,46 @@
+// to import the function that written to change theme
+@import "../../style.scss";
+
+.message{
+      // import the function here and wrap everything in that
+  @include themify($themes) {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    
+    .messageTop{
+        display: flex;
+
+        .messageImg{
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .messageText{
+            padding: 10px;
+            border-radius: 20px;
+            background-color: themed("messageColor");
+            color: themed("bg");
+            max-width: 300px;
+        }
+    }
+
+    .messageBottom{
+        font-size: 12px;
+        margin-top: 10px;
+        color: themed("textColor");
+    }
+
+    &.own{
+        align-items: flex-end;
+
+        .messageText{
+            background-color: themed("bg");
+            color: themed("textColor");
+        }
+    }
+  }
+}

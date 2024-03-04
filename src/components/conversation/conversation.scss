@@ -1,0 +1,29 @@
+// to import the function that written to change theme
+@import "../../style.scss";
+
+.conversation{
+      // import the function here and wrap everything in that
+  @include themify($themes) {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+
+    &:hover{
+        background-color: themed("bgSoft");
+    }
+
+    .conversationImg{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 20px;
+    }
+    .conversationName{
+        
+    }
+  }
+}
+
