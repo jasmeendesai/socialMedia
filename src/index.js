@@ -4,6 +4,61 @@ const cors = require('cors')
 const multer = require('multer')
 const cookieParser = require('cookie-parser')
 
+// socket.io connection
+const io = require('socket.io')(8900, {
+  cors : {
+    origin : "http://localhost:3000"
+  }
+})
+
+let users = []
+
+const addUser = (userId, socketId) => {
+  !users.some(user => user.userId===userId) && users.push({userId, socketId})
+}
+
+const removeUser = (socketId) => {
+  users = users?.filter(user => user.socketId !== socketId)
+}
+
+// getUser
+const getUser = (userId) => {
+  return users.find(user=> user.userId === userId)
+}
+
+io.on("connect", (socket)=> {
+  // when user connected
+  console.log("a user connected.")
+  
+  // take userId and socketId from user
+  socket.on("addUser", userId=>{
+    addUser(userId, socket.id)
+    io.emit("getUsers", users)
+  })
+
+  // send and get messages
+  socket.on("sendMessage", ({senderId, recieverId, text})=>{
+
+    const user = getUser(recieverId);
+    if(user){
+      io.to(user.socketId).emit("getMessage", {
+        senderId,
+        text
+      })
+    } else {
+      console.log("Reciever not found")
+    }
+    
+  })
+
+  // when user disconnected
+  socket.on("disconnect", ()=>{
+    console.log("a user disconnected!")
+    removeUser(socket.id)
+    io.emit("getUsers", users)
+  })
+})
+
 const authRoute = require('./route/auth')
 const userRoute = require('./route/users')
 const postRoute = require('./route/posts')

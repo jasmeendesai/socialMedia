@@ -14,7 +14,11 @@ const addMessages = async (req, res) => {
 const getMessages = async (req, res) => {
   try {
         const {conversationId} = req.params
-        const message = await Message.find({conversationId : conversationId})
+
+        const message = await Message.find({conversationId : conversationId}).populate({
+            path : "sender",
+            select : "profilePic"
+        })
 
         return res.status(201).send(message)
         
