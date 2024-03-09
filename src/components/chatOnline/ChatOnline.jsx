@@ -1,6 +1,14 @@
+import { useContext } from 'react'
 import './chatOnline.scss'
+import { ChatContext } from '../../context/chatContext'
+import { AuthContext } from '../../context/authContext'
 
 function ChatOnline() {
+
+  const {onlineUser, setCurrentChat} =  useContext(ChatContext)
+  const {currentUser} =  useContext(AuthContext)
+
+  console.log(currentUser)
   return (
     <div className='chatOnline'>
         <div className="chatOnlineFriend">

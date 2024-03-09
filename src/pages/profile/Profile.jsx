@@ -53,6 +53,8 @@ function Profile() {
     }
   });
 
+  console.log(relationData)
+
   const mutationOptions = {
     onSuccess: () => {
       console.log('Mutation succeeded');

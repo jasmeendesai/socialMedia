@@ -10,6 +10,7 @@
     padding: 0px 70px;
     display: flex;
     flex-direction: column;
+    position: relative;
     
 
     @include mobile{
@@ -23,7 +24,7 @@
     .chatBoxTop{
         max-height: 88%;
         padding: 10px 40px 10px 10px;
-        overflow-y: scroll;
+        overflow-y: auto;
 
         &::-webkit-scrollbar {
           width: 5px; // width of the scrollbar
@@ -42,11 +43,21 @@
           background: #555; // color of the thumb on hover
         }
     }
+    .chatSpanText{
+      position: absolute;
+      top: 20%;
+      font-size: 70px;
+      display: flex;
+      color: themed("border");
+    }
     .chatBoxBottom{
         padding: 10px;
         margin-top: 5px;
         display: flex;
         align-items: center;
+        position: absolute;
+        width: 85%;
+        bottom: 0;
 
         .chatMessageInput{
           width: 85%;

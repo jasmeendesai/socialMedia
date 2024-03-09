@@ -8,9 +8,9 @@ function Coversation({conversation, currentUser}) {
   return (
     <div className="conversation">
       {member.map((m) => 
-      <div key={m._id}>
-      <img src={m.profilePic ? `/upload/${m.profilePic}` : User} alt="" className="conversationImg" />
-      <span style={{fontWeight : "500", fontSize : "18px"}} className="conversationName">{m.name}</span>
+        <div className="conversationWrapper" key={m._id}>
+        <img src={m.profilePic ? `/upload/${m.profilePic}` : User} alt="" className="conversationImg" />
+        <span style={{fontWeight : "500", fontSize : "18px"}} className="conversationName">{m.name}</span>
       </div>
       )}
       

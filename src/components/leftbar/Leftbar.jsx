@@ -15,6 +15,7 @@ import Tutorials from '../../assets/tutorial.png'
 import Courses from '../../assets/book.png'
 import { useContext } from "react"
 import { AuthContext } from "../../context/authContext"
+import { ChatContext } from "../../context/chatContext"
 import { useLocation } from "react-router-dom"
 import Coversation from "../conversation/Coversation"
 import { useQuery } from "@tanstack/react-query"
@@ -24,6 +25,7 @@ import { makeRequest } from "../../axios"
 function Leftbar() {
 
   const {currentUser} = useContext(AuthContext)
+  const {setCurrentChat} = useContext(ChatContext)
   const location = useLocation();
 
   const { isLoading, error, data } = useQuery({
@@ -117,8 +119,12 @@ function Leftbar() {
         <div className="menu">
           {/* <div className="item"> */}
             <input type="text" placeholder="Search for friends" className="chatMenuInput" />
-            {error ? "Something went wrong!" : isLoading ? "Loading..." : data.map(c =>
-            <Coversation conversation={c.members} currentUser={currentUser} key={c._id}/>
+            {error ? "Something went wrong!" : isLoading ? "Loading..." : data.map((c) =>
+
+                <div onClick={()=> setCurrentChat(c)} key={c._id}>
+                  <Coversation conversation={c.members} currentUser={currentUser} />
+                </div>
+          
             )}
 
           {/* </div> */}

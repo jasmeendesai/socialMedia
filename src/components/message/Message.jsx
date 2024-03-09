@@ -1,13 +1,16 @@
 import "./message.scss"
+import moment from "moment";
+import User from "../../assets/user.png"
 
-function Message({own}) {
+function Message({message, own}) {
+
   return (
     <div className={own ? "message own" : "message"}>
       <div className="messageTop">
-        <img src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className="messageImg" />
-        <p className="messageText">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita placeat, porro ullam accusamus </p>
+        <img src={message.sender.profilePic ? `/upload/${message.sender.profilePic}` : User} alt="" className="messageImg" />
+        <p className="messageText">{message.text}</p>
       </div>
-      <div className="messageBottom">1 hour ago</div>
+      <div className="messageBottom">{moment(message.createdAt).fromNow()}</div>
     </div>
   )
 }

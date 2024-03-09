@@ -13,7 +13,9 @@ function Rightbar() {
   const queryClient = useQueryClient();
   const {currentUser} = useContext(AuthContext)
   const [userId, setUserId] = useState("")
+
   const [relationData, setRelationData] = useState([])
+
   const location = useLocation();
 
   const { isLoading, error, data } = useQuery({
