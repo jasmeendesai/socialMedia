@@ -39,6 +39,7 @@ function Messenger() {
      // Clean up WebSocket connection on component unmount
      return () => {
       socket.current.disconnect();
+      setOnlineUser([])
     };
 
   }, [])
@@ -90,7 +91,7 @@ function Messenger() {
       text : newMessage
     })
 
-    mutate(makeRequest.post.bind(null, '/messages'), { conversationId : currentChat?._id,
+    await mutate(makeRequest.post.bind(null, '/messages'), { conversationId : currentChat?._id,
     sender : currentUser._id, text : newMessage});
     setNewMessage("")
   };

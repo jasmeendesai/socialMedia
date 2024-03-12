@@ -8,7 +8,7 @@ function Posts({userId}) {
 
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["posts"],
+    queryKey: ["posts", userId],
     queryFn: async () => {
       try {
         if(userId){

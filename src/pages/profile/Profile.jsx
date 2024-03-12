@@ -30,7 +30,7 @@ function Profile() {
 
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["user"],
+    queryKey: ["user", userId],
     queryFn: async () => {
       try {
         const response = await makeRequest.get(`/users/find/${userId}`);
@@ -42,7 +42,7 @@ function Profile() {
   });
 
   const { isLoading: rIsLoading, data : relationData } = useQuery({
-    queryKey: ["relationship"],
+    queryKey: ["relationship", userId],
     queryFn: async () => {
       try {
         const response = await makeRequest.get(`/relationships?followedUserId=${userId}`);
@@ -53,7 +53,6 @@ function Profile() {
     }
   });
 
-  console.log(relationData)
 
   const mutationOptions = {
     onSuccess: () => {
