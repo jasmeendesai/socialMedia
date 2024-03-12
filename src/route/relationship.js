@@ -6,6 +6,7 @@ const { Authentication } = require('../middleware/auth')
 const router = express.Router()
 
 router.get("/", getRelation)
+
 router.post("/", Authentication ,addRelation)
 router.delete("/", Authentication, deleteRelation)
 

@@ -21,6 +21,7 @@ const getAllUser = async (req, res) => {
         const user = await User.find().select({password : 0})
 
         return res.status(200).json(user)
+
     } catch (error) {
         return res.status(500).send(error)
     }
