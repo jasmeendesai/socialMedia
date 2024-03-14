@@ -6,6 +6,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { makeRequest } from "../../axios"
 import { useCustomMutation } from "../../customMutation"
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import Story from "../../assets/story.png"
 
 function Stories() {
   const queryClient = useQueryClient();
@@ -78,7 +79,7 @@ const { mutate } = useCustomMutation(queryClient, mutationOptions);
   return (
     <div className="stories">
         <div className="story">
-            <img src={`/upload/${currentUser.profilePic}`} alt="Story" />
+            <img src={currentUser.profilePic ? `/upload/${currentUser.profilePic}` : Story} alt="Story" />
             <span>{currentUser.name}</span>
             <AddCircleSharpIcon className="button" onClick={() =>setMenuOpen(!menuOpen)}/>
         </div>

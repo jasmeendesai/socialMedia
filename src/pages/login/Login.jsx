@@ -34,9 +34,9 @@ function Login() {
     <div className='login'>
       <div className="card">
         <div className="left">
-          <h1>Hello World.</h1>
+          <h1>Hello World!</h1>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus vel error veniam reiciendis sed, ducimus nesciunt officiis temporibus facilis odio ad pariatur vitae excepturi ullam impedit? Sunt animi dolorum ut?
+          Log in to Friend Fiesta and dive back into the vibrant community of friendships waiting for you.
           </p>
           <span>Don't you have an account?</span>
           <Link to="/register">

@@ -27,6 +27,7 @@ function Rightbar() {
     }
   });
 
+
   const { isLoading: rIsLoading, data : relationData } = useQuery({
     // queryKey: ["relationship", userId],
     queryKey: ["relationships"],

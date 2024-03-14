@@ -39,7 +39,7 @@ function Navbar() {
     <div className='navbar'>
       <div className="left">
         <Link to="/" style={{textDecoration : "none"}}>
-          <span>lamasocial</span>
+          <span>FriendFiesta</span>
         </Link>
         <HomeOutlinedIcon/>
         {darkMode ? (
@@ -55,7 +55,10 @@ function Navbar() {
       </div>
       <div className="right">
         {/* <PersonOutlinedIcon/> */}
-        <EmailOutlinedIcon/>
+        <Link to="/messenger" className="link" style={{textDecoration : "none"}}>
+          <EmailOutlinedIcon />
+        </Link>
+        
         <NotificationsOutlinedIcon/>
         <div className="user" onClick={()=>{setMenuOpen(!menuOpen)}} >
           <img src={currentUser.profilePic ? `/upload/${currentUser.profilePic}` : User} alt="" />

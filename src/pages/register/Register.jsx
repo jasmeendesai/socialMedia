@@ -38,9 +38,9 @@ function Register() {
     <div className='register'>
       <div className="card">
         <div className="left">
-          <h1>Lama Social.</h1>
+          <h1>Friend Fiesta!</h1>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus vel error veniam reiciendis sed, ducimus nesciunt officiis temporibus facilis odio ad pariatur vitae excepturi ullam impedit? Sunt animi dolorum ut?
+          Join the fiesta of friendships! Sign up for Friend Fiesta and start building connections.
           </p>
           <span>Do you have an account?</span>
           <Link to="/login">
