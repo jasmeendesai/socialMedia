@@ -36,7 +36,6 @@ function ChatOnline() {
     },
   });
 
-  console.log(conversationData)
 
   const handleClick = (userId) => {
     const userConversation = conversationData?.find((c) => c.members.some(m=> m._id === userId));
@@ -53,29 +52,28 @@ function ChatOnline() {
         'Loading...'
       ) : (
         <>
-            
-          {data.map((r) =>
-            onlineUser.some((u) => u.userId === r.followedUserId._id) ? (
-                <>
+          {data && data.length > 0 ? (
+            data.map((r) =>
+              onlineUser.some((u) => u.userId === r.followedUserId._id) ? (
                 <div className="chatOnlineFriend" key={r._id} onClick={() => handleClick(r.followedUserId._id)}>
-                <div className="chatOnlineImgContainer">
-                  <img
-                    className="chatOnlineImg"
-                    src={r.followedUserId.profilePic ? `/upload/${r.followedUserId.profilePic}` : User}
-                    alt="user"
-                  />
-                  <div className="chatOnlineBadge" />
+                  <div className="chatOnlineImgContainer">
+                    <img
+                      className="chatOnlineImg"
+                      src={r.followedUserId.profilePic ? `/upload/${r.followedUserId.profilePic}` : User}
+                      alt="user"
+                    />
+                    <div className="chatOnlineBadge" />
+                  </div>
+                  <span>{r.followedUserId.name}</span>
                 </div>
-
-                <span >{r.followedUserId.name}</span>                
-              </div>
-              </>
-              
-            ) : 
-            <div style={{margin : "20px 0"}} >
-                <span>No Online Friend avaialable</ span>
-            </div>
-            
+              ) : (
+                <div style={{ margin: '20px 0' }} key={r._id}>
+                  <span>No Online Friend available</span>
+                </div>
+              )
+            )
+          ) : (
+            <div>No data available</div>
           )}
         </>
       )}

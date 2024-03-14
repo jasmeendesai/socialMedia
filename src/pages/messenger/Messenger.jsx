@@ -44,16 +44,26 @@ function Messenger() {
 
   }, [])
 
-
-  
-
   
   useEffect(() => {
     socket.current.emit("addUser", currentUser._id)
     socket.current.on("getUsers", users => {
+
       setOnlineUser(users)
     })
   }, [currentUser])
+
+  // useEffect(() => {
+  //   // Emit addUser event when currentUser is available
+  //   if (currentUser) {
+  //     socket.current.emit("addUser", currentUser._id);
+  //   }
+
+  //   // Listen for getUsers event to update online users
+  //   socket.current.on("getUsers", (users) => {
+  //     setOnlineUser(users);
+  //   });
+  // }, [currentUser, setOnlineUser]);
   
 
 
@@ -109,27 +119,6 @@ function Messenger() {
     },
   });
 
-  // relation data
-  // const { data:rData } = useQuery({
-  //   queryKey: ["messages", currentChat?._id, arrivalMessage],
-  //   queryFn: async () => {
-  //     try {
-  //       const response = await makeRequest.get(`messages/${currentChat?._id}`);
-  //       return response.data;
-        
-  //     } catch (error) {
-  //       throw new Error("Failed to fetch likes");
-  //     }
-  //   },
-  // });
-
-
-  // socket
-  //   useEffect(() => {
-  //     console.log(data)
-  //   // arrivalMessage && currentChat?.members.includes(arrivalMessage.sender) && 
-  //   // setNewMessage(prev => [...prev, arrivalMessage])
-  // }, [arrivalMessage])
 
   useEffect(() => {
 
@@ -139,10 +128,6 @@ function Messenger() {
     });
   }, [data])
 
-  // useEffect(() => {
-  //   // Scroll to the last message when data (messages) updates
-  //   scrollRef.current?.lastElementChild?.scrollIntoView({ behavior: 'smooth' });
-  // }, [data]);
   
 
   return (
